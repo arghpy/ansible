@@ -1,0 +1,64 @@
+---
+githubRepo: https://github.com/arghpy/
+
+dotfiles: dotfiles
+
+suckless_progs:
+  - dwm
+  - dwmblocks
+  - st
+  - dmenu
+  - slock
+
+additionalPackages:
+  - sof-firmware
+  - alsa-ucm-conf
+  - base-devel
+  - bluez
+  - bluez-utils
+  - man-db
+  - man-pages
+  - neovim
+  - git
+  - zsh
+  - htop
+  - maim
+  - thunar
+  - picom
+  - dunst
+  - xorg-server
+  - xorg-xwininfo
+  - xorg-xinit
+  - xorg-xprop
+  - xorg-xinput
+  - xwallpaper
+  - xorg-xrandr
+  - arandr
+  - libnotify
+  - vlc
+  - sxiv
+  - bc
+  - brightnessctl
+  - xclip
+  - pulseaudio
+  - pulsemixer
+  - pamixer
+  - pavucontrol
+  - sysstat
+  - blueman
+  - unzip
+  - zathura-pdf-mupdf
+  - python-pip
+  - lm_sensors
+  - ttf-jetbrains-mono
+  - ttf-jetbrains-mono-nerd
+  - fzf
+  - poppler
+  - gnupg
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - zsh-completions
+  - firefox
+  - dmidecode
+  - libreoffice-still
+  - ripgrep
