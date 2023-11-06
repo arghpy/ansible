@@ -1,0 +1,61 @@
+---
+- name: Main block
+  block:
+    - name: Prepare installation disk
+      include_tasks: 01_prepare_disk.yml
+
+    - name: Install packages
+      include_tasks: 02_install_packages.yml
+
+    - name: Generate fstab
+      shell: >
+        genfstab -U /mnt >> /mnt/etc/fstab
+
+    - name: Configuring new host pacman
+      lineinfile:
+        dest: "/mnt/etc/pacman.conf"
+        regexp: "ParallelDownloads"
+        line: "ParallelDownloads = 5"
+        state: present
+
+    - name: Set hostname of the host
+      lineinfile:
+        dest: /etc/hostname
+        create: yes
+        line: "archlinux"
+
+    - name: Run in chroot
+      include_tasks: 03_run_chroot.yml
+
+    - name: Copying the ssh key on the new system
+      copy:
+        src: /root/.ssh/authorized_keys
+        dest: /mnt/root/.ssh/
+        remote_src: yes
+
+    - name: Enable services
+      include_tasks: 04_enable_services.yml
+
+    - name: Add new custom wired connection
+      template:
+        src: "wired.nmconnection.j2"
+        dest: "/mnt/etc/NetworkManager/system-connections/wired.nmconnection"
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Setup time
+      include_tasks: 07_setting_time.yml
+
+    - name: Reboot and wait for the system
+      reboot:
+
+    - name: Setting up language
+      include_tasks: 05_set_language.yml
+
+    - name: Set ansible user
+      include_tasks: 06_setting_users.yml
+    
+    - name: Credentials
+      debug:
+        msg: "The password for the root account is root. Please change it!"
