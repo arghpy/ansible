@@ -1,0 +1,17 @@
+---
+- name: Set language
+  lineinfile:
+    dest: "/etc/locale.gen"
+    regexp: "en_US.UTF-8 UTF-8"
+    line: "en_US.UTF-8 UTF-8"
+    state: present
+
+- name: Set language further 
+  lineinfile:
+    dest: /etc/locale.conf
+    create: yes
+    line: "LANG=en_US.UTF-8"
+
+- name: Setting locales
+  command: locale-gen
+
