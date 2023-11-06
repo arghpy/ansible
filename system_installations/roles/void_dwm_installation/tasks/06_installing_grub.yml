@@ -1,0 +1,6 @@
+---
+- name: installing grub
+  shell: "xchroot /mnt xbps-install -y grub-x86_64-efi"
+
+- name: Setting grub
+  shell: xchroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Void"
