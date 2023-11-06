@@ -1,0 +1,9 @@
+---
+- name: Download JetBrains Mono Font
+  unarchive:
+    src: https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
+    dest: /usr/share/fonts
+    remote_src: yes
+
+- name: Update fonts cache
+  shell: fc-cache -f -v

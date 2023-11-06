@@ -1,0 +1,11 @@
+---
+- name: Configuring locales
+  lineinfile:
+    dest: "/mnt/etc/default/libc-locales"
+    regexp: "en_US.UTF-8 UTF-8"
+    line: "en_US.UTF-8 UTF-8"
+    state: present
+
+- name: Generate locales
+  shell: "xchroot /mnt xbps-reconfigure -f glibc-locales"
+

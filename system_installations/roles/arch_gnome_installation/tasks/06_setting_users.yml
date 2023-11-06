@@ -1,0 +1,14 @@
+---
+- name: Allow users from wheel to execute as sudo
+  lineinfile:
+    dest: "/etc/sudoers"
+    regexp: "%wheel ALL=(ALL:ALL) ALL"
+    line: "%wheel ALL=(ALL:ALL) ALL"
+    state: present
+
+- name: "Create {{ user_account }} account"
+  user:
+    name: "{{ user_account }}"
+    group: wheel
+    comment: Admin account
+    password: "{{ user_password }}"

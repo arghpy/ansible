@@ -1,0 +1,10 @@
+---
+- name: Configuring local pacman
+  lineinfile:
+    dest: "/etc/pacman.conf"
+    regexp: "ParallelDownloads"
+    line: "ParallelDownloads = 5"
+    state: present
+
+- name: Install packages
+  shell: "pacstrap -K /mnt {{ Packages | join(' ') }}"

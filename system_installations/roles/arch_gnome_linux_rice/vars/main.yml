@@ -1,0 +1,35 @@
+---
+githubRepo: https://github.com/arghpy/
+
+dotfiles: dotfiles
+
+suckless_progs:
+  - dwm
+  - dwmblocks
+  - st
+  - dmenu
+  - slock
+
+additionalPackages:
+  - sof-firmware
+  - alsa-ucm-conf
+  - base-devel
+  - bluez
+  - bluez-utils
+  - man-db
+  - man-pages
+  - neovim
+  - zsh
+  - htop
+  - vlc
+  - blueman
+  - unzip
+  - python-pip
+  - ttf-jetbrains-mono
+  - ttf-jetbrains-mono-nerd
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - zsh-completions
+  - firefox
+  - libreoffice-still
+  - gnome
