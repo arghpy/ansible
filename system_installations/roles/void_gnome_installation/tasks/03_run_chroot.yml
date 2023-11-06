@@ -1,0 +1,12 @@
+---
+- name: Updating the package manager
+  shell: "xchroot /mnt xbps-install -Syu xbps"
+
+- name: Updating the system
+  shell: "xchroot /mnt xbps-install -yu"
+
+- name: Installing the base system
+  shell: "xchroot /mnt xbps-install -y base-system"
+
+- name: Remove base-voidstrap
+  shell: "xchroot /mnt xbps-remove -y base-voidstrap"

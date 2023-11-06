@@ -1,0 +1,9 @@
+---
+- name: Ensure python3 visibility
+  file:
+    src: /usr/bin/python3.11
+    dest: "/usr/bin/{{ item }}"
+    state: link
+  loop:
+    - python3
+    - python

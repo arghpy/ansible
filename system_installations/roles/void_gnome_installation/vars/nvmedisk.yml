@@ -1,0 +1,7 @@
+boot_dev: "{{ disk }}p1"
+
+swap_dev: "{{ disk }}p2"
+
+root_dev: "{{ disk }}p3"
+
+home_dev: "{{ disk }}p4"

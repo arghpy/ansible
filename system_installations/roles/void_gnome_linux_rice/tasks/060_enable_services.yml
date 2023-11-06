@@ -1,0 +1,5 @@
+---
+- name: Enable {{ service_element }} service
+  runit:
+    name: "{{ service_element }}"
+    enabled: true

@@ -1,0 +1,17 @@
+---
+- name: Create directory for NetworkManager
+  shell: mkdir -p /mnt/etc/NetworkManager/system-connections
+
+- name: Add new custom wired connection
+  template:
+    src: "wired.nmconnection.j2"
+    dest: "/mnt/etc/NetworkManager/system-connections/wired.nmconnection"
+    owner: root
+    group: root
+    mode: '0600'
+       
+- name: Copy resolve.conf on the new system
+  copy:
+    src: /etc/resolv.conf
+    dest: /mnt/etc/resolv.conf
+    remote_src: yes

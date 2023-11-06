@@ -1,0 +1,19 @@
+---
+- name: Add non-free repository
+  shell: xbps-install -Sy void-repo-nonfree
+
+- name: Install packages
+  package:
+    name: "{{ additionalPackages }}"
+    state: present
+
+- name: Enable bluetooth
+  runit:
+    name: bluetoothd
+    enabled: yes
+
+- name: Add {{ user_account }} to bluetooth group
+  user:
+    name: "{{ user_account }}"
+    groups: bluetooth
+    append: yes
