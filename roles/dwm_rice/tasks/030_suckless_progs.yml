@@ -1,0 +1,26 @@
+---
+- name: Cloning suckless progs
+  block:
+    - name: Cloning {{ suckless_progs_element }}
+      git:
+        repo: "{{ githubRepo }}{{ suckless_progs_element }}"
+        dest: "/home/{{ user_account }}/.local/src/{{suckless_progs_element}}"
+      register: result
+      until: result.failed == False
+      retries: 5
+      delay: 3
+
+    - name: Modify the user from configs
+      shell: >
+        find /home/{{ user_account }}/ -type f | xargs sed -i "s|arghpy|{{ user_account }}|g"
+
+    - name: Change ownership
+      file:
+        path: "/home/{{ user_account }}/.local/src/{{suckless_progs_element}}"
+        owner: "{{ user_account }}"
+        group: wheel
+
+    - name: Compile {{ suckless_progs_element}}
+      make:
+        chdir: "/home/{{ user_account }}/.local/src/{{suckless_progs_element}}"
+        target: install
