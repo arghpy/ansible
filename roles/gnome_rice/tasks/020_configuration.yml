@@ -32,7 +32,7 @@
 - name: Cloning nvim
   git:
     repo: "{{ githubRepo }}nvim"
-    dest: "/home/{{ user_account }}/.config/"
+    dest: "/home/{{ user_account }}/.config/nvim"
   register: result
   until: result.failed == False
   retries: 5
@@ -42,7 +42,7 @@
   file:
     path: "/home/{{ user_account }}/.config"
     owner: "{{ user_account }}"
-    group: wheel
+    group: "{{ user_account }}"
     recurse: yes
 
 - name: Prepare packer for nvim
