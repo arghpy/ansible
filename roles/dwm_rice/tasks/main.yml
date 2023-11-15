@@ -21,6 +21,3 @@
       user:
         name: "{{ user_account }}"
         shell: /usr/bin/zsh
-
-    - name: Reboot the system
-      reboot:

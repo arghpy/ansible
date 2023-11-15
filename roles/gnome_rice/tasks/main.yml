@@ -6,6 +6,3 @@
 
     - name: Configuring system
       include_tasks: 020_configuration.yml
-
-    - name: Reboot the system
-      reboot:
