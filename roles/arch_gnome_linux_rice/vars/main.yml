@@ -3,13 +3,6 @@ githubRepo: https://github.com/arghpy/
 
 dotfiles: dotfiles
 
-suckless_progs:
-  - dwm
-  - dwmblocks
-  - st
-  - dmenu
-  - slock
-
 additionalPackages:
   - sof-firmware
   - alsa-ucm-conf

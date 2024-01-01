@@ -57,7 +57,7 @@
 - name: Setting up language
   include_tasks: 05_set_language.yml
 
-- name: Set ansible user
+- name: Set {{ user_account }} account
   include_tasks: 06_setting_users.yml
 
 - name: Setting time
