@@ -13,7 +13,7 @@ This is the setup needed before running the playbook.
 
 1. Download voidlinux iso:
 
-Go to https://repo-default.voidlinux.org/live/current/ and download the base iso image.
+Go to [Void Linux](https://repo-default.voidlinux.org/live/current/) and download the base iso image.
 
 2. Copy the iso image on a USB stick by either using `dd` or other tools:
 
