@@ -1,0 +1,11 @@
+---
+name: Default imports
+
+on:
+  pull_request:
+    types: [labeled, unlabeled, opened, edited, reopened, synchronize, ready_for_review, locked, unlocked]
+
+jobs:
+  import_actions:
+    uses: arghpy/workflows/.github/workflows/lint.yaml@main
+    secrets: inherit
