@@ -8,7 +8,7 @@
     disk: "/dev/{{ biggest_disk.stdout }}"
 
 - name: Wipe everything on the disk
-  command: wipefs -a {{ disk }}
+  command: wipefs --all --force {{ disk }}
 
 - name: Partition the disk
   parted:
