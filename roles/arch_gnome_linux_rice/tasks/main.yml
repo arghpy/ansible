@@ -2,7 +2,7 @@
 - name: Main block
   block:
     - name: Installing additional packages
-      include_tasks: 020_additional_packages.yml
+      include_tasks: 010_additional_packages.yml
 
     - name: Change {{ user_account }} shell
       user:
@@ -22,7 +22,7 @@
         enabled: yes
           
     - name: Manage networking
-      include_tasks: 040_manage_network.yml
+      include_tasks: 020_manage_network.yml
 
     - name: Dconf setting
       include_tasks: 030_dconf_settings.yml
