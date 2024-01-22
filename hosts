@@ -1,6 +1,6 @@
 [local]
-192.168.1.135
+<IP>
 
 [local:vars]
-ansible_user = root
+ansible_user = <remote_user>
 ansible_ssh_private_key_file = ~/.ssh/id_ed25519
