@@ -7,12 +7,12 @@
     - name: Change {{ user_account }} shell
       user:
         name: "{{ user_account }}"
-        shell: /usr/bin/zsh
+        shell: /usr/bin/bash
 
-    - name: Add zshrc
+    - name: Add bashrc
       template:
-        src: "zshrc.j2"
-        dest: "/home/{{ user_account }}/.zshrc"
+        src: "bashrc.j2"
+        dest: "/home/{{ user_account }}/.bashrc"
         owner: "{{ user_account }}" 
         mode: '0744'
 

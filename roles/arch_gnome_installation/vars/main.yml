@@ -1,68 +1,61 @@
 ---
-partitionScheme: [
-  {
-    part_start: 1MiB,
-    part_end: 1GiB,
-    name: "boot",
+partitionScheme:
+  boot:
+    part_start: 1MiB
+    part_end: 1GiB
+    name: "boot"
     number: 1
-  },
-  {
-    part_start: 1GiB,
-    part_end: 5GiB,
-    name: "swap",
+
+  swap:
+    part_start: 1GiB
+    part_end: 5GiB
+    name: "swap"
     number: 2
-  },
-  {
 
-    part_start: 5GiB,
-    part_end: 35GiB,
-    name: "root",
+  root:
+    part_start: 5GiB
+    part_end: 35GiB
+    name: "root"
     number: 3
-  },
-  {
-    part_start: 35GiB,
-    part_end: 100%,
-    name: "home",
+
+  home:
+    part_start: 35GiB
+    part_end: 100%
+    name: "home"
     number: 4
-  }
-]    
 
-partitionFileSystem: [
-  {
-    dev: "{{ disk }}1",
+partitionFileSystem:
+  boot:
+    dev: "{{ disk }}1"
     fstype: vfat
-  },
-  {
-    dev: "{{ disk }}2",
+
+  swap:
+    dev: "{{ disk }}2"
     fstype: swap
-  },
-  {
-    dev: "{{ disk }}3",
-    fstype: ext4
-  },
-  {
-    dev: "{{ disk }}4",
-    fstype: ext4
-  }
-]
 
-partitionMount: [
-  {
-    src: "{{ disk }}3",
-    path: /mnt,
+  root:
+    dev: "{{ disk }}3"
     fstype: ext4
-  },
-  {
-    src: "{{ disk }}1",
-    path: /mnt/boot,
+
+  home:
+    dev: "{{ disk }}4"
+    fstype: ext4
+
+partitionMount:
+  root:
+    src: "{{ disk }}3"
+    path: /mnt
+    fstype: ext4
+
+  boot:
+    src: "{{ disk }}1"
+    path: /mnt/boot
     fstype: vfat
-  },
-  {
-    src: "{{ disk }}4",
-    path: /mnt/home,
+
+  home:
+    src: "{{ disk }}4"
+    path: /mnt/home
     fstype: ext4
-  }
-]
 
 timezone: Europe/Bucharest
 
