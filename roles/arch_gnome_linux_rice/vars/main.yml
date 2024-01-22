@@ -20,9 +20,6 @@ additionalPackages:
   - python-pip
   - ttf-jetbrains-mono
   - ttf-jetbrains-mono-nerd
-  - zsh-autosuggestions
-  - zsh-syntax-highlighting
-  - zsh-completions
   - firefox
   - libreoffice-still
   - gnome

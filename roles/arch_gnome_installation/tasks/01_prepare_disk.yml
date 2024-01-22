@@ -13,35 +13,29 @@
 - name: Partition the disk
   parted:
     device: "{{ disk }}"
-    number: "{{ partitionScheme_element['number'] }}"
-    name: "{{ partitionScheme_element['name'] }}" 
-    part_start: "{{ partitionScheme_element['part_start'] }}"
-    part_end: "{{ partitionScheme_element['part_end'] }}"
+    number: "{{ item.value.number }}"
+    name: "{{ item.value.name }}" 
+    part_start: "{{ item.value.part_start }}"
+    part_end: "{{ item.value.part_end }}"
     label: gpt
     state: present
-  loop: "{{ partitionScheme }}"
-  loop_control:
-    loop_var: partitionScheme_element
+  with_dict: "{{ partitionScheme }}"
 
 - name: Create filesystems on disk
   filesystem:
-    device: "{{ partitionFileSystem_element['dev'] }}"
-    fstype: "{{ partitionFileSystem_element['fstype'] }}"
+    device: "{{ item.value.dev }}"
+    fstype: "{{ item.value.fstype }}"
     force: true
-  loop: "{{ partitionFileSystem}}"
-  loop_control:
-    loop_var: partitionFileSystem_element
+  with_dict: "{{ partitionFileSystem}}"
 
 - name: Turn swap on
   command: swapon "{{ disk }}2"
 
 - name: Mount the partitions
   mount:
-    src: "{{ partitionMount_element['src'] }}"
-    path: "{{ partitionMount_element['path'] }}" 
-    fstype: "{{ partitionMount_element['fstype'] }}" 
+    src: "{{ item.value.src }}"
+    path: "{{ item.value.path }}" 
+    fstype: "{{ item.value.fstype }}" 
     state: ephemeral
-  loop: "{{ partitionMount }}"
-  loop_control:
-    loop_var: partitionMount_element
+  with_dict: "{{ partitionMount }}"
 
