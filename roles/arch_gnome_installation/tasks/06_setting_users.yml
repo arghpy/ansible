@@ -18,4 +18,4 @@
     name: ansible
     group: wheel
     comment: tehnical account
-    password: $6$k.eEaNXmtjuxPrR0$U5bRdrW5tJoH6p8ASkD8A9Qsl1KvSb0DXwhtVt5Qr6hRsBMSfrntdGJS9lzyL0JJEetCWQiEXmB
+    password: '$6$k.eEaNXmtjuxPrR0$U5bRdrW5tJoH6p8ASkD8A9Qsl1KvSb0DXwhtVt5Qr6hRsBMSfrntdGJS9lzyL0JJEetCWQiEXmB'
