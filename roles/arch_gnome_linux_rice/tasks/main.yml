@@ -24,6 +24,9 @@
     - name: Manage networking
       include_tasks: 040_manage_network.yml
 
+    - name: Dconf setting
+      include_tasks: 030_dconf_settings.yml
+
     - name: Credentials
       debug:
         msg: "The password for the root account is root. Please change it!"

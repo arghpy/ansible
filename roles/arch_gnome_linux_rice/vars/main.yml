@@ -11,15 +11,14 @@ additionalPackages:
   - bluez-utils
   - man-db
   - man-pages
-  - neovim
-  - zsh
+  - vim
   - htop
   - vlc
+  - wget
+  - curl
   - blueman
   - unzip
   - python-pip
-  - ttf-jetbrains-mono
-  - ttf-jetbrains-mono-nerd
   - firefox
   - libreoffice-still
   - gnome
