@@ -27,6 +27,9 @@
     - name: Dconf setting
       include_tasks: 030_dconf_settings.yml
 
+    - name: Installing yay
+      include_tasks: 040_install_yay.yml
+
     - name: Credentials
       debug:
         msg: "The password for the root account is root. Please change it!"

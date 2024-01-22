@@ -1,0 +1,13 @@
+---
+- name: Install yay - AUR
+  shell: |
+    sudo -u {{ user_account }} mkdir -p "$REPODIR/yay"
+    sudo -u {{ user_account }} git -C "$REPODIR" clone --depth 1 --single-branch \
+                                     --no-tags -q "https://aur.archlinux.org/yay.git" "$REPODIR/yay" ||
+                                     {
+                                       cd "$REPODIR/yay"
+                                       sudo -u "$NAME" git pull --force origin master
+    }
+    cd "$REPODIR/yay" || exit 1
+    sudo -u {{ user_account }} -D "$REPODIR/yay" makepkg --noconfirm -si
+
