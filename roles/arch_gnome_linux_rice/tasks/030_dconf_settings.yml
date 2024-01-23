@@ -6,8 +6,8 @@
     mode: '0744'
 
 - name: Load the dconf configuration as {{ user_account }}
-  become: false
-  shell: "dconf load / < /home/{{ user_account }}/dconf_settings"
+  shell: |
+    sudo -u {{ user_account }} dconf load / < /home/{{ user_account }}/dconf_settings
 
 - name: Remove dconf_settings
   file:
