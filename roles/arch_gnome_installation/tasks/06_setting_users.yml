@@ -14,6 +14,8 @@
     password: "{{ user_password }}"
 
 - name: Check if vault_secrets.yml exists
+  delegate_to: localhost
+  become: false
   stat:
     path: vault_secrets.yml
   register: secrets
