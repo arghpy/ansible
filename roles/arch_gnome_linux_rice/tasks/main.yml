@@ -20,12 +20,6 @@
       service:
         name: gdm
         enabled: yes
-          
-    - name: Manage networking
-      include_tasks: 020_manage_network.yml
-
-    - name: Dconf setting
-      include_tasks: 030_dconf_settings.yml
 
         #    - name: Installing yay
         #      include_tasks: 040_install_yay.yml
@@ -33,6 +27,15 @@
     - name: Credentials
       debug:
         msg: "The password for the root account is root. Please change it!"
+
+    - name: Reboot the system
+      reboot:
+          
+    - name: Manage networking
+      include_tasks: 020_manage_network.yml
+
+    - name: Dconf setting
+      include_tasks: 030_dconf_settings.yml
 
     - name: Reboot the system
       reboot:

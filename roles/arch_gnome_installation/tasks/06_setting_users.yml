@@ -17,14 +17,14 @@
   delegate_to: localhost
   become: false
   stat:
-    path: ../../../vault_secrets.yml
+    path: ~/opt/ansible/vault_secrets.yml
   register: secrets
 
 - name: Create tehnical account
   block:
     - name: Include the vault file
       include_vars:
-        file: ../../../vault_secrets.yml
+        file: ~/opt/ansible/vault_secrets.yml
 
     - name: Create tehnical accounts
       user:
