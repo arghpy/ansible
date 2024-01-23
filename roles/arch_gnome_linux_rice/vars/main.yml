@@ -21,4 +21,4 @@ additionalPackages:
   - python-pip
   - firefox
   - libreoffice-still
-  - gnome
+  - alacritty

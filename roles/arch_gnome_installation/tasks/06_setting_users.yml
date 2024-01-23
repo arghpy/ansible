@@ -27,6 +27,7 @@
         file: ~/opt/ansible/vault_secrets.yml
 
     - name: Create tehnical accounts
+      no_log: true
       user:
         name: "{{ item.key }}"
         group: wheel
