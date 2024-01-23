@@ -6,16 +6,33 @@
     line: "%wheel ALL=(ALL:ALL) ALL"
     state: present
 
-- name: "Create {{ user_account }} account"
+- name: Create {{ user_account }} account
   user:
     name: "{{ user_account }}"
     group: wheel
     comment: "{{ user_account }}"
     password: "{{ user_password }}"
 
-- name: "Create ansible account"
-  user:
-    name: ansible
-    group: wheel
-    comment: tehnical account
-    password: '$6$k.eEaNXmtjuxPrR0$U5bRdrW5tJoH6p8ASkD8A9Qsl1KvSb0DXwhtVt5Qr6hRsBMSfrntdGJS9lzyL0JJEetCWQiEXmB'
+- name: Check if vault_secrets.yml exists
+  stat:
+    path: vault_secrets.yml
+  register: secrets
+
+- name: Create tehnical account
+  block:
+    - name: Include the vault file
+      include_vars:
+        file: vault_secrets.yml
+
+    - name: Create tehnical accounts
+      user:
+        name: "{{ item.key }}"
+        group: wheel
+        comment: "{{ item.value.comment }}"
+        password: "{{ item.value.password }}"
+      loop: "{{ vault_accounts | dict2items}}"
+  rescue:
+    - name: Print when errors
+      ansible.builtin.debug:
+        msg: 'Error caught. Aborting...'
+  when: secrets.stat.exists
