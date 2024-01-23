@@ -24,7 +24,7 @@
   block:
     - name: Include the vault file
       include_vars:
-        file: vault_secrets.yml
+        file: ~/opt/ansible/vault_secrets.yml
 
     - name: Create tehnical accounts
       user:
