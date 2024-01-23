@@ -75,3 +75,4 @@ Packages:
   - python3
   - git
   - bash-completion
+  - gnome
