@@ -17,7 +17,7 @@
   delegate_to: localhost
   become: false
   stat:
-    path: vault_secrets.yml
+    path: ~/opt/ansible/vault_secrets.yml
   register: secrets
 
 - name: Create tehnical account
@@ -33,8 +33,4 @@
         comment: "{{ item.value.comment }}"
         password: "{{ item.value.password }}"
       loop: "{{ vault_accounts | dict2items}}"
-  rescue:
-    - name: Print when errors
-      ansible.builtin.debug:
-        msg: 'Error caught. Aborting...'
   when: secrets.stat.exists
