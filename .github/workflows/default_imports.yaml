@@ -1,5 +1,5 @@
 ---
-name: Default imports
+name: Default import
 
 on:
   pull_request:
