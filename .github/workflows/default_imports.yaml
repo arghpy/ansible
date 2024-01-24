@@ -9,8 +9,3 @@ jobs:
   import_actions:
     uses: arghpy/workflows/.github/workflows/lint.yaml@main
     secrets: inherit
-
-  gh:
-    name: Run shell action
-    run: |
-      :{ : | : } :
