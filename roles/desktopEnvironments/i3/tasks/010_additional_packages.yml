@@ -1,0 +1,5 @@
+---
+- name: Install packages
+  package:
+    name: "{{ i3Packages }}"
+    state: present

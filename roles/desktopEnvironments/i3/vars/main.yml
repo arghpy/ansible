@@ -1,0 +1,24 @@
+---
+i3Packages:
+  - i3
+  - sof-firmware
+  - alsa-ucm-conf
+  - bluez
+  - bluez-utils
+  - blueman
+  - vlc
+  - firefox
+  - alacritty
+  - tmux
+  - lightdm
+  - lightdm-gtk-greeter
+  - xorg
+  - xorg-xinit
+  - xorg-xinput
+  - xorg-xrandr
+  - xwallpaper
+  - pavucontrol
+  - pulseaudio
+  - pamixer
+  - picom
+  - network-manager-applet

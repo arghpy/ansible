@@ -1,0 +1,20 @@
+---
+- name: Enable sshd service
+  file:
+    src: /mnt/usr/lib/systemd/system/sshd.service
+    dest: /mnt/etc/systemd/system/multi-user.target.wants/sshd.service
+    state: link
+
+- name: Enable NetworkManager service
+  file:
+    src: /mnt/usr/lib/systemd/system/NetworkManager.service
+    dest: /mnt/etc/systemd/system/multi-user.target.wants/NetworkManager.service
+    state: link
+
+- name: Add new custom wired connection
+  template:
+    src: "wired.nmconnection.j2"
+    dest: "/mnt/etc/NetworkManager/system-connections/wired.nmconnection"
+    owner: root
+    group: root
+    mode: '0600'

@@ -1,3 +1,0 @@
----
-- name: Install packages
-  shell: "xchroot /mnt xbps-install -Sy {{ Packages | join(' ') }}"

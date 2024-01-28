@@ -1,7 +1,0 @@
----
-- name: Enable {{ services_element }} service
-  file:
-    src: "/etc/sv/{{ services_element }}"
-    dest: "/mnt/etc/runit/runsvdir/default/{{ services_element }}"
-    state: link
-    force: true

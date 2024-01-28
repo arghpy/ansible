@@ -1,0 +1,25 @@
+---
+- name: Post-installation phase
+  block:
+    - name: Setting up language
+      include_tasks: 01_set_language.yml
+    
+    - name: Set {{ user_account }} account
+      include_tasks: 02_setting_users.yml
+    
+    - name: Setting time
+      include_tasks: 03_setting_time.yml
+
+    - name: Install a desktop environment
+      include_role: 
+        name: 'desktopEnvironments/{{ DE }}'
+      when: DE is defined
+    
+    - name: Manage network
+      include_tasks: 04_manage_network.yml
+    
+    - name: Reboot the system
+      reboot:
+        reboot_timeout: 5
+      ignore_errors: true
+      ignore_unreachable: true

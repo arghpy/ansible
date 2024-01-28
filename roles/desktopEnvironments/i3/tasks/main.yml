@@ -1,0 +1,8 @@
+---
+- name: i3
+  block:
+    - name: Installing additional packages
+      include_tasks: 010_additional_packages.yml
+
+    - name: Adding configuration
+      include_tasks: 020_configs.yml
