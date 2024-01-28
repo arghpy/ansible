@@ -1,0 +1,7 @@
+---
+- name: Install yay - AUR
+  shell: |
+    sudo -u {{ user_account }} mkdir -p "/home/{{ user_account }}/.local/yay"
+    sudo -u {{ user_account }} git clone https://aur.archlinux.org/yay.git "/home/{{ user_account }}/.local/yay"
+    sudo -u {{ user_account }} -D "/home/{{ user_account }}/.local/yay" makepkg --noconfirm -si
+

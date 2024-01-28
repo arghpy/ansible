@@ -2,7 +2,7 @@
 - name: Main block
   block:
     - name: Installing additional packages
-      include_tasks: 020_additional_packages.yml
+      include_tasks: 010_additional_packages.yml
 
     - name: Change {{ user_account }} shell
       user:
@@ -20,13 +20,22 @@
       service:
         name: gdm
         enabled: yes
-          
-    - name: Manage networking
-      include_tasks: 040_manage_network.yml
+
+        #    - name: Installing yay
+        #      include_tasks: 040_install_yay.yml
 
     - name: Credentials
       debug:
         msg: "The password for the root account is root. Please change it!"
+
+    - name: Reboot the system
+      reboot:
+          
+    - name: Manage networking
+      include_tasks: 020_manage_network.yml
+
+    - name: Dconf setting
+      include_tasks: 030_dconf_settings.yml
 
     - name: Reboot the system
       reboot:

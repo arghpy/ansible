@@ -1,0 +1,27 @@
+---
+- name: Copy the template on the machine
+  template:
+    src: "dconf_settings.j2"
+    dest: "/home/{{ user_account }}/dconf_settings"
+    owner: "{{ user_account }}"
+    mode: '0744'
+
+- name: Ensure gdm  is in a running state
+  service:
+    name: gdm
+    state: started
+    register: gdmDetails
+  until: gdmDetails.status.ActiveState == "active"
+  retries: 15
+  delay: 20
+
+- name: Load the dconf configuration as {{ user_account }}
+  become_user: "{{ user_account }}"
+  become: true
+  shell: |
+    dconf load / < /home/{{ user_account }}/dconf_settings
+
+- name: Remove dconf_settings
+  file:
+    path: "/home/{{ user_account }}/dconf_settings"
+    state: absent
