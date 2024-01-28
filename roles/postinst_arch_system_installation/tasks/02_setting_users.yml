@@ -20,25 +20,11 @@
     owner: "{{ user_account }}" 
     mode: '0744'
 
-- name: Check if vault_secrets.yml exists
-  delegate_to: localhost
-  become: false
-  stat:
-    path: ../../../vault_secrets.yml
-  register: secrets
-
-- name: Create tehnical account
-  block:
-    - name: Include the vault file
-      include_vars:
-        file: ../../../vault_secrets.yml
-
-    - name: Create tehnical accounts
-      no_log: true
-      user:
-        name: "{{ item.key }}"
-        group: wheel
-        comment: "{{ item.value.comment }}"
-        password: "{{ item.value.password | password_hash('sha512') }}"
-      loop: "{{ vault_accounts | dict2items}}"
-  when: secrets.stat.exists
+- name: Create tehnical accounts
+  no_log: true
+  user:
+    name: "{{ item.key }}"
+    group: wheel
+    comment: "{{ item.value.comment }}"
+    password: "{{ item.value.password | password_hash('sha512') }}"
+  loop: "{{ vault_accounts | dict2items}}"
