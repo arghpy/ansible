@@ -11,8 +11,10 @@
       include_tasks: 03_setting_time.yml
 
     - name: Install a Desktop Environment
-      include_role: 'desktopEnvironments/{{ DE }}'
-      when: DE is defined
+      block:
+        - name: Install {{ DE }}
+          include_role: 'desktopEnvironments/{{ DE }}'
+          when: DE is defined
     
     - name: Manage network
       include_tasks: 04_manage_network.yml
