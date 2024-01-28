@@ -42,6 +42,11 @@
     owner: "{{ user_account }}" 
     mode: '0644'
 
+- name: Enable LightDM
+  service:
+    name: lightdm
+    enabled: yes
+
 - name: Add xinitrc
   template:
     src: "xinitrc.j2"
