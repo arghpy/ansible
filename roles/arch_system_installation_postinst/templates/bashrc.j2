@@ -25,3 +25,7 @@ function parse_git_branch() {
 }
 
 export PS1='\u@\H \w\[\e[92m\]$(parse_git_branch)\[\e[0m\] \$ '
+
+if [ -z "$DISPLAY" ]; then
+  exec startx
+fi

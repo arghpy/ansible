@@ -1,0 +1,45 @@
+---
+- name: Add i3 config directory
+  file:
+    path: "/home/{{ user_account }}/.config/i3"
+    state: directory
+
+- name: Add i3 config
+  template:
+    src: "config.j2"
+    dest: "/home/{{ user_account }}/.config/i3/.config"
+    owner: "{{ user_account }}" 
+    mode: '0644'
+
+- name: Add custom scripts directory
+  file:
+    path: "/home/{{ user_account }}/.local/bin/custom"
+    state: directory
+
+- name: Add switch display script
+  template:
+    src: "switch_display.j2"
+    dest: "/home/{{ user_account }}/.local/bin/custom/switch_display"
+    owner: "{{ user_account }}" 
+    mode: '0755'
+
+- name: Add tmux config
+  template:
+    src: "tmux.conf.j2"
+    dest: "/home/{{ user_account }}/.tmux.conf"
+    owner: "{{ user_account }}" 
+    mode: '0644'
+
+- name: Add lightdm config
+  template:
+    src: "99-switch-monitor.conf.j2"
+    dest: "/etc/lightdm/lightdm.conf.d/99-switch-monitor.conf"
+    owner: "{{ user_account }}" 
+    mode: '0644'
+
+- name: Add xinitrc
+  template:
+    src: "xinitrc.j2"
+    dest: "/home/{{ user_account }}/.xinitrc"
+    owner: "{{ user_account }}" 
+    mode: '0644'

@@ -10,3 +10,5 @@ i3Packages:
   - firefox
   - alacritty
   - tmux
+  - lightdm
+  - lightdm-gtk-greeter
