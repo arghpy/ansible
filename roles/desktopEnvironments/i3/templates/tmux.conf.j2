@@ -1,0 +1,24 @@
+# Change prefix
+unbind C-b
+set-option -g prefix C-f
+bind-key C-f send-prefix
+
+# Vim-like navigation
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# use <prefix> s for horizontal split
+bind h split-window -v
+# use <prefix> v for vertical split
+bind v split-window -h
+
+# resize panes more easily
+bind < resize-pane -L 10
+bind > resize-pane -R 10
+bind - resize-pane -D 10
+bind + resize-pane -U 10
+
+# allow longer session name
+set -g status-left-length 20

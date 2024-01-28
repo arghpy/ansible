@@ -64,6 +64,7 @@ Packages:
   - linux-firmware
   - base
   - wget
+  - curl
   - vim
   - sudo
   - openssh
@@ -75,12 +76,9 @@ Packages:
   - python3
   - git
   - bash-completion
-  - sof-firmware
-  - alsa-ucm-conf
   - base-devel
   - man-db
   - man-pages
   - htop
-  - curl
   - unzip
   - python-pip

@@ -1,0 +1,12 @@
+---
+i3Packages:
+  - i3
+  - sof-firmware
+  - alsa-ucm-conf
+  - bluez
+  - bluez-utils
+  - blueman
+  - vlc
+  - firefox
+  - alacritty
+  - tmux

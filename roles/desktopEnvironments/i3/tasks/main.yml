@@ -1,0 +1,24 @@
+---
+- name: i3
+  block:
+    - name: Installing additional packages
+      include_tasks: 010_additional_packages.yml
+
+    - name: Add i3 config directory
+      file:
+        path: "/home/{{ user_account }}/.config/i3"
+        state: directory
+
+    - name: Add i3 config
+      template:
+        src: "config.j2"
+        dest: "/home/{{ user_account }}/.config/i3/.config"
+        owner: "{{ user_account }}" 
+        mode: '0644'
+
+    - name: Add tmux config
+      template:
+        src: "tmux.conf.j2"
+        dest: "/home/{{ user_account }}/.tmux.conf"
+        owner: "{{ user_account }}" 
+        mode: '0644'

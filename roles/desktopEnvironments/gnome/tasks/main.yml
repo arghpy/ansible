@@ -1,0 +1,10 @@
+---
+- name: Gnome
+  block:
+    - name: Installing additional packages
+      include_tasks: 010_additional_packages.yml
+
+    - name: Enable GDM
+      service:
+        name: gdm
+        enabled: yes
