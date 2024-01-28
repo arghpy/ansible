@@ -1,0 +1,23 @@
+---
+
+- name: Generate fstab
+  shell: genfstab -U /mnt >> /mnt/etc/fstab
+
+- name: Configuring new host pacman
+  lineinfile:
+    dest: "/mnt/etc/pacman.conf"
+    regexp: "ParallelDownloads"
+    line: "ParallelDownloads = 5"
+    state: present
+
+- name: Set hostname of the host
+  lineinfile:
+    dest: /mnt/etc/hostname
+    create: yes
+    line: "archlinux"
+
+- name: Copying the ssh key on the new system
+  copy:
+    src: /root/.ssh/authorized_keys
+    dest: /mnt/root/.ssh/
+    remote_src: yes

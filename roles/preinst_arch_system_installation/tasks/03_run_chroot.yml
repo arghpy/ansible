@@ -1,0 +1,12 @@
+---
+- name: Installing grub on the system
+  shell: |
+    arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id="Arch"
+
+- name: Configure grub
+  shell: |
+    arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+
+- name: Changing root password on the system
+  shell: |
+    echo 'root:root' | arch-chroot /mnt chpasswd
