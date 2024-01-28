@@ -15,5 +15,5 @@
       encrypt: "sha512_crypt"
 
   roles:
-    - preinst_arch_system_installation
-    - postinst_arch_system_installation
+    - arch_system_installation_preinst
+    - arch_system_installation_postinst

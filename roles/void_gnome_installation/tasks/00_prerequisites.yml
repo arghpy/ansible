@@ -1,5 +1,0 @@
----
-- name: Install required packages
-  package: 
-     name: "{{ prePackages }}"
-     state: present
