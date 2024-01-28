@@ -12,3 +12,7 @@ i3Packages:
   - tmux
   - lightdm
   - lightdm-gtk-greeter
+  - xorg
+  - xorg-xinit
+  - xorg-xinput
+  - xorg-xrandr
