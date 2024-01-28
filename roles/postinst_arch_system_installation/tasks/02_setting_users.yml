@@ -26,4 +26,4 @@
     group: wheel
     comment: "{{ item.value.comment }}"
     password: "{{ item.value.password | password_hash('sha512') }}"
-  loop: "{{ vault_accounts | dict2items}}"
+  loop: "{{ vaultAccounts | dict2items }}"
