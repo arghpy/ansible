@@ -21,6 +21,7 @@
     mode: '0744'
 
 - name: Create tehnical accounts
+  no_log: True
   user:
     name: "{{ item.key }}"
     group: wheel
