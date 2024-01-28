@@ -16,5 +16,5 @@
     - name: Reboot the system
       reboot:
         reboot_timeout: 5
-        ignore_errors: true
-        ignore_unreachable: true
+      ignore_errors: true
+      ignore_unreachable: true
