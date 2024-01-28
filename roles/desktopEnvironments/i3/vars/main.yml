@@ -16,3 +16,9 @@ i3Packages:
   - xorg-xinit
   - xorg-xinput
   - xorg-xrandr
+  - xwallpaper
+  - pavucontrol
+  - pulseaudio
+  - pamixer
+  - picom
+  - network-manager-applet

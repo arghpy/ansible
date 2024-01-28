@@ -17,6 +17,7 @@
   file:
     path: "/home/{{ user_account }}/.local/bin/custom"
     state: directory
+    owner: "{{ user_account }}" 
 
 - name: Add switch display script
   template:
