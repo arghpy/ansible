@@ -1,6 +1,9 @@
 ---
 - hosts: all
 
+  vars_files:
+    - ../../vault_secrets.yml
+
   vars_prompt:
     - name: user_account
       prompt: "name for future user account"
