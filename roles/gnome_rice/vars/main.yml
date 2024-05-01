@@ -1,0 +1,22 @@
+---
+githubRepo: https://github.com/arghpy/
+
+dotfiles: dotfiles
+
+additionalPackages:
+  - man-db
+  - wget
+  - curl
+  - vim
+  - neovim
+  - git
+  - zsh
+  - htop
+  - neofetch
+  - sysstat
+  - python3-pip
+  - lm-sensors
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - dmidecode
+  - ripgrep

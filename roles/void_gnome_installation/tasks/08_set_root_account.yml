@@ -1,0 +1,9 @@
+---
+- name: Copying the ssh key on the new system
+  copy:
+    src: /home/anon/.ssh/authorized_keys
+    dest: /mnt/root/.ssh/
+    remote_src: yes
+
+- name: Changing root password on the system
+  shell: "echo 'root:root' | xchroot /mnt chpasswd -c SHA512"

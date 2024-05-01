@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+  vars_prompt:
+    - name: user_account
+      prompt: "user account"
+      confirm: yes
+      private: no
+
+  roles:
+    - gnome_rice

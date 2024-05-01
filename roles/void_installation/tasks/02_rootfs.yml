@@ -1,0 +1,6 @@
+---
+- name: Download and unpack ROOTFS tarball
+  unarchive:
+    src: https://repo-default.voidlinux.org/live/current/void-x86_64-ROOTFS-20230628.tar.xz
+    dest: /mnt
+    remote_src: yes

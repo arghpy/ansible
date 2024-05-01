@@ -1,0 +1,22 @@
+---
+- name: Allow users from wheel to execute as sudo
+  lineinfile:
+    dest: "/mnt/etc/sudoers"
+    regexp: "%wheel ALL=(ALL:ALL) ALL"
+    line: "%wheel ALL=(ALL:ALL) ALL"
+    state: present
+
+- name: Create {{ user_account }} account
+  shell: "xchroot /mnt useradd -G wheel {{ user_account }}"
+
+- name: Create home for user
+  file:
+    path: "/mnt/home/{{ user_account }}"
+    state: directory
+    mode: '0700'
+
+- name: Change owenership of the home directory
+  shell: "xchroot /mnt chwon {{ user_account }}:{{ user_account }} /home/{{ user_account }}"
+
+- name: Setting password for {{ user_account }}
+  shell: "echo '{{ user_account }}:{{ user_password }}' | xchroot /mnt chpasswd -c SHA512"

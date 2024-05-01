@@ -1,0 +1,43 @@
+---
+- name: Cloning the configuration repository
+  git:
+    repo: "{{ githubRepo }}{{ dotfiles }}"
+    dest: "/home/{{ user_account }}/dotfiles"
+  register: result
+  until: result.failed == False
+  retries: 5
+  delay: 3
+
+
+- name: Copy config
+  copy:
+    src: "/home/{{ user_account }}/{{ dotfiles }}/"
+    dest: "/home/{{ user_account }}/"
+    remote_src: yes
+    owner: "{{ user_account }}"
+    group: wheel
+
+- name: Remove cloned directory
+  file:
+    path: "/home/{{ user_account }}/{{ dotfiles }}/"
+    state: absent
+
+- name: Cloning nvim
+  git:
+    repo: "{{ githubRepo }}nvim"
+    dest: "/home/{{ user_account }}/.config/nvim"
+  register: result
+  until: result.failed == False
+  retries: 5
+  delay: 3
+
+- name: Change ownership of config directory
+  file:
+    path: "/home/{{ user_account }}/.config"
+    owner: "{{ user_account }}"
+    group: wheel
+    recurse: yes
+
+- name: Prepare packer for nvim
+  shell: su - {{ user_account }} -c "bash /home/{{ user_account }}/.config/nvim/install_packer.txt"
+

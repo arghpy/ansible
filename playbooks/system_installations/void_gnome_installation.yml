@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: true
+
+  vars_prompt:
+    - name: user_account
+      prompt: "name for future user account"
+      private: no
+    - name: user_password
+      prompt: "password for account"
+      confirm: yes
+      private: yes
+
+  roles:
+    - void_gnome_installation
+    - void_gnome_linux_rice

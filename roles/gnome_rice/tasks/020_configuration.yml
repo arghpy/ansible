@@ -1,0 +1,49 @@
+---
+- name: Copy the template on the machine
+  template:
+    src: "dconf_settings.j2"
+    dest: "/home/{{ user_account }}/dconf_settings"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}" 
+    mode: '0744'
+
+- name: Load the dconf configuration as {{ user_account }}
+  become: false
+  shell: "dconf load /org/gnome/ < /home/{{ user_account }}/dconf_settings"
+
+- name: Remove dconf_settings
+  file:
+    path: "/home/{{ user_account }}/dconf_settings"
+    state: absent
+
+- name: Add zsh configuration
+  template:
+    src: "zshrc.j2"
+    dest: "/home/{{ user_account }}/.zshrc"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}" 
+    mode: '0744'
+
+- name: Change {{ user_account }} shell
+  user:
+    name: "{{ user_account }}"
+    shell: /usr/bin/zsh
+
+- name: Cloning nvim
+  git:
+    repo: "{{ githubRepo }}nvim"
+    dest: "/home/{{ user_account }}/.config/nvim"
+  register: result
+  until: result.failed == False
+  retries: 5
+  delay: 3
+
+- name: Change ownership of config directory
+  file:
+    path: "/home/{{ user_account }}/.config"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+    recurse: yes
+
+- name: Prepare packer for nvim
+  shell: su - {{ user_account }} -c "bash /home/{{ user_account }}/.config/nvim/install_packer.txt"

@@ -1,0 +1,47 @@
+---
+- name: Main block
+  block:
+    - name: Prerequisites
+      include_tasks: 00_prerequisites.yml
+
+    - name: Prepare installation disk
+      include_tasks: 01_prepare_disk.yml
+
+    - name: Install packages
+      include_tasks: 02_rootfs.yml
+
+    - name: Run in chroot
+      include_tasks: 03_run_chroot.yml
+
+    - name: Configuring locales
+      include_tasks: 04_configuring_locales.yml
+
+    - name: Generate fstab based on genfstab script
+      include_tasks: 05_genfstab.yml
+
+    - name: Installing grub
+      include_tasks: 06_installing_grub.yml
+
+    - name: Ensuring configuration is ok
+      shell: "xchroot /mnt xbps-reconfigure -fa"
+
+    - name: Setting root account
+      include_tasks: 08_set_root_account.yml
+
+    - name: Installing packages
+      include_tasks: 10_install_packages.yml
+
+    - name: Setting up {{ user_account }}
+      include_tasks: 11_set_user.yml
+
+    - name: Enable services
+      include_tasks: 07_enable_services.yml
+      loop: "{{ services }}"
+      loop_control:
+        loop_var: services_element
+
+    - name: Configure NetworkManager
+      include_tasks: 12_wired_connection.yml
+
+    - name: Reboot and wait for the system
+      reboot:

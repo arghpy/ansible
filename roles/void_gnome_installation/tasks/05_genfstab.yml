@@ -1,0 +1,22 @@
+---
+- name: Cloning the git repo
+  git:
+    repo: https://github.com/adamarbour/void-linux-genfstab
+    dest: "/root/void-linux-genfstab"
+  register: result
+  until: result.failed == False
+  retries: 5
+  delay: 3
+
+- name: Making genfstab file executable
+  file:
+    path: /root/void-linux-genfstab/genfstab
+    mode: '0744'
+
+- name: Generating fstab
+  shell: "/root/void-linux-genfstab/genfstab -U /mnt > /mnt/etc/fstab"
+  
+- name: Deleting the git repo
+  file:
+    path: /root/void-linux-genfstab
+    state: absent

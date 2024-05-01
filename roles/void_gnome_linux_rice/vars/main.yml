@@ -1,0 +1,33 @@
+---
+githubRepo: https://github.com/arghpy/
+
+services:
+  - gdm
+  - socklog-unix
+  - nanoklogd
+
+additionalPackages:
+  - man-db
+  - man-pages
+  - neovim
+  - git
+  - zsh
+  - htop
+  - vlc
+  - python3-pip
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - zsh-completions
+  - firefox
+  - libreoffice
+  - gnome
+  - xorg
+  - gcc
+  - pulseaudio
+  - pulseaudio-utils
+  - pulsemixer
+  - alsa-plugins-pulseaudio
+  - bluez
+  - xdg-utils
+  - socklog-void
+  - xclip

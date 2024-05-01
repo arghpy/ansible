@@ -1,0 +1,9 @@
+---
+- name: Setup time
+  file:
+    src: "/mnt/usr/share/zoneinfo/{{ timezone }}"
+    dest: /mnt/etc/localtime
+    state: link
+
+- name: Sync time with hardware
+  shell: "xchroot /mnt hwclock --systohc"
