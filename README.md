@@ -27,3 +27,4 @@ $> ansible-playbook playbooks/.../...yml --ask-vault-password -K
 If you don't want to add a tehnical user on
 the target machine, simply ignore the above
 step.
+
