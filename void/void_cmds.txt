@@ -1,0 +1,1 @@
+sudo xbps-install -Syu xbps python3.11 && sudo ln -s /usr/bin/python3.11 /usr/bin/python3 && sudo ln -s /usr/bin/python3.11 /usr/bin/python && sudo mkdir /root/.ssh && sudo cp .ssh/authorized_keys /root/.ssh

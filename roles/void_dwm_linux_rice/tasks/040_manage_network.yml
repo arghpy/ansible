@@ -1,0 +1,13 @@
+---
+- name: Add new auto wired connection
+  template:
+    src: "auto.nmconnection.j2"
+    dest: "/etc/NetworkManager/system-connections/auto.nmconnection"
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Remove custom wired connection
+  file:
+    path: /etc/NetworkManager/system-connections/wired.nmconnection
+    state: absent

@@ -1,0 +1,11 @@
+---
+- name: Create directory for NetworkManager
+  shell: mkdir -p /mnt/etc/NetworkManager/system-connections
+
+- name: Add new custom wired connection
+  template:
+    src: "wired.nmconnection.j2"
+    dest: "/mnt/etc/NetworkManager/system-connections/wired.nmconnection"
+    owner: root
+    group: root
+    mode: '0600'

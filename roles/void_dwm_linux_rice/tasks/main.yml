@@ -1,0 +1,35 @@
+---
+- name: Main block
+  block:
+    - name: Installing additional packages
+      include_tasks: 020_additional_packages.yml
+
+    - name: Configuring system
+      include_tasks: 010_configuration.yml
+
+    - name: Installing suckless programs
+      include_tasks: 030_suckless_progs.yml
+      loop: "{{ suckless_progs }}"
+      loop_control:
+        loop_var: suckless_progs_element
+
+    - name: Change {{ user_account }} shell
+      user:
+        name: "{{ user_account }}"
+        shell: /usr/bin/zsh
+          
+    - name: Manage networking
+      include_tasks: 040_manage_network.yml
+
+    - name: Install JetBrains Mono Font
+      include_tasks: 050_jetbrains_font.yml
+
+    - name: Credentials
+      debug:
+        msg: "The password for the root account is root. Please change it!"
+
+    - name: Reboot the system
+      reboot:
+        reboot_timeout: 5
+      ignore_errors: true
+      ignore_unreachable: true

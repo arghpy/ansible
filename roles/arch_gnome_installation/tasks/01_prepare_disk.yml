@@ -1,0 +1,41 @@
+---
+- name: Get biggest disk for installation
+  shell: lsblk -d -n -b | sort -nrk4 | awk '{print $1; exit}'
+  register: biggest_disk
+
+- name: Setting the installation disk
+  set_fact:
+    disk: "/dev/{{ biggest_disk.stdout }}"
+
+- name: Wipe everything on the disk
+  command: wipefs --all --force {{ disk }}
+
+- name: Partition the disk
+  parted:
+    device: "{{ disk }}"
+    number: "{{ item.value.number }}"
+    name: "{{ item.value.name }}" 
+    part_start: "{{ item.value.part_start }}"
+    part_end: "{{ item.value.part_end }}"
+    label: gpt
+    state: present
+  with_dict: "{{ partitionScheme }}"
+
+- name: Create filesystems on disk
+  filesystem:
+    device: "{{ item.value.dev }}"
+    fstype: "{{ item.value.fstype }}"
+    force: true
+  with_dict: "{{ partitionFileSystem}}"
+
+- name: Turn swap on
+  command: swapon "{{ disk }}2"
+
+- name: Mount the partitions
+  mount:
+    src: "{{ item.value.src }}"
+    path: "{{ item.value.path }}" 
+    fstype: "{{ item.value.fstype }}" 
+    state: ephemeral
+  with_dict: "{{ partitionMount }}"
+

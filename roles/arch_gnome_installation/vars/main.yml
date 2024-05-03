@@ -1,0 +1,78 @@
+---
+partitionScheme:
+  boot:
+    part_start: 1MiB
+    part_end: 1GiB
+    name: "boot"
+    number: 1
+
+  swap:
+    part_start: 1GiB
+    part_end: 5GiB
+    name: "swap"
+    number: 2
+
+  root:
+    part_start: 5GiB
+    part_end: 35GiB
+    name: "root"
+    number: 3
+
+  home:
+    part_start: 35GiB
+    part_end: 100%
+    name: "home"
+    number: 4
+
+partitionFileSystem:
+  boot:
+    dev: "{{ disk }}1"
+    fstype: vfat
+
+  swap:
+    dev: "{{ disk }}2"
+    fstype: swap
+
+  root:
+    dev: "{{ disk }}3"
+    fstype: ext4
+
+  home:
+    dev: "{{ disk }}4"
+    fstype: ext4
+
+partitionMount:
+  root:
+    src: "{{ disk }}3"
+    path: /mnt
+    fstype: ext4
+
+  boot:
+    src: "{{ disk }}1"
+    path: /mnt/boot
+    fstype: vfat
+
+  home:
+    src: "{{ disk }}4"
+    path: /mnt/home
+    fstype: ext4
+
+timezone: Europe/Bucharest
+
+Packages:
+  - linux
+  - linux-firmware
+  - base
+  - wget
+  - vim
+  - sudo
+  - openssh
+  - polkit
+  - networkmanager
+  - arch-install-scripts
+  - grub
+  - efibootmgr
+  - python3
+  - git
+  - bash-completion
+  - gnome

@@ -1,0 +1,15 @@
+---
+- hosts: all
+
+  vars_prompt:
+    - name: user_account
+      prompt: "name for future user account"
+      private: no
+    - name: user_password
+      prompt: "password for account"
+      confirm: yes
+      private: yes
+      encrypt: "sha512_crypt"
+
+  roles:
+    - arch_installation

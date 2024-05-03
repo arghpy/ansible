@@ -1,0 +1,26 @@
+---
+- name: Allow users from wheel to execute as sudo
+  lineinfile:
+    dest: "/etc/sudoers"
+    regexp: "%wheel ALL=(ALL:ALL) ALL"
+    line: "%wheel ALL=(ALL:ALL) ALL"
+    state: present
+
+- name: Create ansible user
+  user:
+    name: ansible
+    group: wheel
+    comment: Ansible user to manage system remotely
+
+- name: Copying the ssh key on the new system
+  copy:
+    src: /root/.ssh/authorized_keys
+    dest: /home/ansible/.ssh/
+    remote_src: yes
+
+- name: "Create {{ user_account }} account"
+  user:
+    name: "{{ user_account }}"
+    group: wheel
+    comment: Admin account
+    password: "{{ password_user_account }}"

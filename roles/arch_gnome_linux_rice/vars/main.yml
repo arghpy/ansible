@@ -1,0 +1,22 @@
+---
+githubRepo: https://github.com/arghpy/
+
+dotfiles: dotfiles
+
+additionalPackages:
+  - sof-firmware
+  - alsa-ucm-conf
+  - base-devel
+  - bluez
+  - bluez-utils
+  - man-db
+  - man-pages
+  - htop
+  - vlc
+  - curl
+  - blueman
+  - unzip
+  - python-pip
+  - firefox
+  - libreoffice-still
+  - alacritty

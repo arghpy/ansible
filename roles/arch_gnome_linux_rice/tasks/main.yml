@@ -1,0 +1,44 @@
+---
+- name: Main block
+  block:
+    - name: Installing additional packages
+      include_tasks: 010_additional_packages.yml
+
+    - name: Change {{ user_account }} shell
+      user:
+        name: "{{ user_account }}"
+        shell: /usr/bin/bash
+
+    - name: Add bashrc
+      template:
+        src: "bashrc.j2"
+        dest: "/home/{{ user_account }}/.bashrc"
+        owner: "{{ user_account }}" 
+        mode: '0744'
+
+    - name: Enable GDM
+      service:
+        name: gdm
+        enabled: yes
+
+        #    - name: Installing yay
+        #      include_tasks: 040_install_yay.yml
+
+    - name: Credentials
+      debug:
+        msg: "The password for the root account is root. Please change it!"
+
+    - name: Reboot the system
+      reboot:
+          
+    - name: Manage networking
+      include_tasks: 020_manage_network.yml
+
+    - name: Dconf setting
+      include_tasks: 030_dconf_settings.yml
+
+    - name: Reboot the system
+      reboot:
+        reboot_timeout: 5
+      ignore_errors: true
+      ignore_unreachable: true

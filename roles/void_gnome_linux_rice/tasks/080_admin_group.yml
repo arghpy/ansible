@@ -1,0 +1,17 @@
+---
+- name: Add admin group
+  group:
+    name: admin
+    state: present
+
+- name: Allow users from admin to execute as sudo reboot and poweroff
+  lineinfile:
+    dest: "/etc/sudoers"
+    line: "%admin ALL=NOPASSWD: /usr/bin/reboot, /usr/bin/poweroff"
+    state: present
+
+- name: Add {{ user_account }} to admin group
+  user:
+    name: "{{ user_account }}"
+    groups: admin
+    append: yes

@@ -1,0 +1,8 @@
+---
+- name: Main block
+  block:
+    - name: Installing additional packages
+      include_tasks: 010_additional_packages.yml
+
+    - name: Configuring system
+      include_tasks: 020_configuration.yml

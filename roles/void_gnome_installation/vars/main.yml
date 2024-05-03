@@ -1,0 +1,92 @@
+---
+
+timezone: Europe/Bucharest
+
+services:
+  - sshd
+  - dbus
+  - NetworkManager
+
+partitionScheme: [
+  {
+    part_start: 1MiB,
+    part_end: 1GiB,
+    name: "boot",
+    number: 1
+  },
+  {
+    part_start: 1GiB,
+    part_end: 5GiB,
+    name: "swap",
+    number: 2
+  },
+  {
+
+    part_start: 5GiB,
+    part_end: 35GiB,
+    name: "root",
+    number: 3
+  },
+  {
+    part_start: 35GiB,
+    part_end: 100%,
+    name: "home",
+    number: 4
+  }
+]    
+
+partitionFileSystem: [
+  {
+    dev: "{{ boot_dev }}",
+    fstype: vfat
+  },
+  {
+    dev: "{{ swap_dev }}",
+    fstype: swap
+  },
+  {
+    dev: "{{ root_dev }}",
+    fstype: ext4
+  },
+  {
+    dev: "{{ home_dev }}",
+    fstype: ext4
+  }
+]
+
+partitionMount: [
+  {
+    src: "{{ root_dev }}",
+    path: /mnt,
+    fstype: ext4
+  },
+  {
+    src: "{{ boot_dev }}",
+    path: /mnt/boot/efi,
+    fstype: vfat
+  },
+  {
+    src: "{{ home_dev }}",
+    path: /mnt/home,
+    fstype: ext4
+  }
+]
+
+prePackages:
+  - parted
+  - xtools
+  - tar
+  - wget
+  - xz
+
+Packages:
+  - wget
+  - vim
+  - sudo
+  - openssh
+  - polkit
+  - python3.11
+  - git
+  - bash-completion
+  - NetworkManager
+  - dbus

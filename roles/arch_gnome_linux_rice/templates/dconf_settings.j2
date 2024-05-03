@@ -1,0 +1,42 @@
+[desktop/input-sources]
+sources=[('xkb', 'us')]
+
+[desktop/interface]
+color-scheme='prefer-dark'
+font-antialiasing='grayscale'
+font-hinting='slight'
+show-battery-percentage=true
+
+[desktop/wm/keybindings]
+close=['<Super>q']
+switch-applications=@as []
+switch-applications-backward=@as []
+switch-to-workspace-left=['<Control>Left']
+switch-to-workspace-right=['<Control>Right']
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>Return'
+command='/usr/bin/alacritty'
+name='Open terminal'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+binding='<Super>w'
+command='/usr/bin/firefox'
+name='Open Firefox'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom2]
+binding='<Shift><Super>o'
+command='nautilus'
+name='folders'
+
+[settings-daemon/plugins/power]
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
+
+[org/gnome/login-screen]
+disable-user-list=true
